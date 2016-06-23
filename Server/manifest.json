@@ -1,0 +1,16 @@
+{
+  "name": "YExplorer",
+  "description": "Use controls with our Street View app",
+  "version": "1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+
+  "sandbox": {
+      "pages": ["window.html", "streetview.html"]
+  },
+  "icons": { "16": "server.png", "128": "server.png" }
+}
