@@ -12,5 +12,7 @@
   "sandbox": {
       "pages": ["window.html", "streetview.html"]
   },
+
+	"permissions": ["background", "nativeMessaging", "https://maps.googleapis.com/*"],
   "icons": { "16": "server.png", "128": "server.png" }
 }

@@ -9,8 +9,8 @@ chrome.app.runtime.onLaunched.addListener(function() {
 
   chrome.app.window.create('streetview.html', {
     'outerBounds': {
-      'width': 600,
-      'height': 600
+      'width': 1100,
+      'height': 700
     }
   });
 });

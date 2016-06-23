@@ -1,24 +1,35 @@
+function initialize() { };
+
 var port = chrome.runtime.connect({ name: 'YDREAMS' });
 
 
 port.onMessage.addListener(function(msg) {
-  if (msg.direction) {
-    window.StreetView.mapWalk(msg.direction);
-  }
+	console.log("Message received: %o", msg);
+
+		if (msg["direction"]) {
+			window.StreetView.mapWalk(msg.direction);
+		}
+		else if (msg["lat"]) {
+			window.StreetView.setupPanorama(msg.lat, msg.lng)
+		} 
+		else if (msg['navigation']) {
+			window.StreetView.toggleStreetView();	
+		}
+
 });
 
 
-
-var panorama;
-function initialize() {
-  panorama = new google.maps.StreetViewPanorama(
-    document.getElementById('street-view'),
-    {
-      position: { lat: 38.7980084, lng: -9.391184 },
-      pov: {heading: 0, pitch: 0},
+window.StreetView = {
+	setupPanorama: function(msg_lat, msg_lng) {
+		$('#StreetMap').append('<div id="street-view"></div>');
+		
+		var pano = new google.maps.StreetViewPanorama(
+    document.getElementById('street-view'), {
+      position: { lat: parseFloat(msg_lat) , lng: parseFloat(msg_lng) },
+      pov: {heading: 1, pitch: 0},
       zoom: 0,
-      disableDefaultUI: true,
-      linksControl: false,
+      disableDefaultUI: false,
+      linksControl: true,
       panControl: true,
       addressControl: false,
       enableCloseButton: false,
@@ -30,10 +41,17 @@ function initialize() {
       }
 
     });
-}
+		$('.video').fadeOut();
+		$('#street-view').fadeIn();
+		return pano;
+	},
 
+	toggleStreetView: function() {
+		$('#street-view').fadeOut();
+		$('#street-view').remove();
+		$('.video').fadeIn();
+	},
 
-window.StreetView = {
 
   mapWalk: function(direction) {
     var which;

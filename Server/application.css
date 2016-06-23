@@ -1,6 +1,22 @@
-body,html { margin: 0; padding: 0; width: 100%;}
+body,html { margin: 0; padding: 0; width: 100%; -webkit-font-smoothing: antialiased; }
 body#Controls   { background: url('./img/bg.png') repeat }
 
+.screen-hide { display: none }
+
+#StreetMap .video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+		 z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#StreetMap .instructions { width: 50%; position: absolute; top: 30%; margin: 0 auto; height: 30%; left: 0; right: 0; }
+#StreetMap h1 { color: white; text-shadow: 0 1px 1px #333; }
 
 #street-view {
   position: absolute;
@@ -8,9 +24,14 @@ body#Controls   { background: url('./img/bg.png') repeat }
   height: 100%;
 }
 
+h1 { text-shadow: 0 1px 1px #333; }
+h1 { font-size: 6em; font-weight: 100; }
+h2 { font-weight: 300; color: #333; }
+.screen .medium-4 img { box-shadow: 0 1px 2px #333; }
 
+.text-center { text-align: center }
 
-
+.screen { margin-top: 2em; position: relative; }
 
 .controls { position: absolute; width: 80%; margin: 0 auto; left: 0; right: 0; height: 100%; }
 .controls .nav:active { background: white; }
@@ -28,4 +49,4 @@ body#Controls   { background: url('./img/bg.png') repeat }
 
 /** Map **/
 .iv-tactile-compass { display: none; }
-
+.gmnoprint, .gm-style-cc { display: none; }
